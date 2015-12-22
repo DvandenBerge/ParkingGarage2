@@ -25,6 +25,10 @@ public class TicketDispenser {
         }
     }
     
+    /**
+     * Uses the TicketFactory to produce a formatted ticket
+     * @return a formatted ticket object
+     */
     public Ticket printTicket(){
         return ticketPrinter.generateTicket(tfs.garageName,tfs.printBody(++ticketNumber),ticketNumber);
     }

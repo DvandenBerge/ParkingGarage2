@@ -16,7 +16,7 @@ public class TicketInputTerminal {
     private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     private int totalLoggedHours=0;
     private double totalGrossed=0;
-    private CustomerOutputStrategy cos;
+    private CustomerOutputStrategy cos=new ConsoleParagraphOutput();
      
     public TicketInputTerminal(FeeStrategy fs,GarageOwner go){
         this.rate=fs;
@@ -66,7 +66,7 @@ public class TicketInputTerminal {
      * @param t any Ticket object
      * @return an Int representing elapsed hours
      */
-    private int getTicketElapsedTime(Ticket t){
+    public int getTicketElapsedTime(Ticket t){
         if(t instanceof Ticket && t!=null){
             Date d1=null;
             Date d2=null;
@@ -108,15 +108,19 @@ public class TicketInputTerminal {
      * @param hours elapsed parking hours
      * @return the cost of parking in accordance to the rate
      */
-    private double getParkingCost(int hours){
+    public double getParkingCost(int hours){
         this.totalLoggedHours+=hours;
         double parkingCost=rate.getTotalCost(hours);
         this.totalGrossed+=parkingCost;
         return parkingCost;
     }
     
+    /**
+     * Uses the CustomerOutput to display information to the customer in whichever way is needed, be it console or gui
+     * @param t any Ticket object
+     */
     public void enterTicket(Ticket t){
-        getParkingCost(getTicketElapsedTime(t));
+        cos.displayCustomerOutput(getTicketElapsedTime(t),t,getParkingCost(getTicketElapsedTime(t)));
     }
 
     @Override

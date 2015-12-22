@@ -10,5 +10,5 @@ package parkinggaragetwopointoh;
  * @author Dan
  */
 public interface CustomerOutputStrategy {
-    public abstract void displayCustomerOutput(int hours, Ticket t);
+    public abstract void displayCustomerOutput(int hours, Ticket t, double cost);
 }

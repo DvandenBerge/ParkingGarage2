@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -15,10 +16,19 @@ public class TicketInputTerminal {
     private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     private int totalLoggedHours=0;
     private double totalGrossed=0;
+    private CustomerOutputStrategy cos;
      
     public TicketInputTerminal(FeeStrategy fs,GarageOwner go){
         this.rate=fs;
         go.addTicketInputTerminal(this);
+    }
+
+    public CustomerOutputStrategy getCos() {
+        return cos;
+    }
+
+    public void setCos(CustomerOutputStrategy cos) {
+        this.cos = cos;
     }
     
     public FeeStrategy getRate(){
@@ -108,4 +118,40 @@ public class TicketInputTerminal {
     public void enterTicket(Ticket t){
         getParkingCost(getTicketElapsedTime(t));
     }
+
+    @Override
+    public String toString() {
+        return "This is a terminal to input tickets and output parking cost";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TicketInputTerminal other = (TicketInputTerminal) obj;
+        if (!Objects.equals(this.rate, other.rate)) {
+            return false;
+        }
+        if (!Objects.equals(this.timeFormat, other.timeFormat)) {
+            return false;
+        }
+        if (!Objects.equals(this.cos, other.cos)) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.rate);
+        hash = 17 * hash + Objects.hashCode(this.timeFormat);
+        hash = 17 * hash + Objects.hashCode(this.cos);
+        return hash;
+    }
+    
 }

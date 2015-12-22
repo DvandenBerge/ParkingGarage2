@@ -1,5 +1,7 @@
 package parkinggaragetwopointoh;
 
+import java.util.Objects;
+
 /**
  *
  * @author dvandenberge
@@ -26,4 +28,32 @@ public class TicketDispenser {
     public Ticket printTicket(){
         return ticketPrinter.generateTicket(tfs.garageName,tfs.printBody(++ticketNumber),ticketNumber);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.ticketPrinter);
+        hash = 23 * hash + Objects.hashCode(this.tfs);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TicketDispenser other = (TicketDispenser) obj;
+        if (!Objects.equals(this.ticketPrinter, other.ticketPrinter)) {
+            return false;
+        }
+        if (!Objects.equals(this.tfs, other.tfs)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

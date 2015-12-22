@@ -1,5 +1,7 @@
 package parkinggaragetwopointoh;
 
+import java.util.Objects;
+
 /**
  *
  * @author dvandenberge
@@ -55,4 +57,33 @@ public class Ticket {
         }
         this.ticketNumber = ticketNumber;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.garageName);
+        hash = 97 * hash + Objects.hashCode(this.enterTime);
+        hash = 97 * hash + this.ticketNumber;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ticket other = (Ticket) obj;
+        if (!Objects.equals(this.enterTime, other.enterTime)) {
+            return false;
+        }
+        if (this.ticketNumber != other.ticketNumber) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

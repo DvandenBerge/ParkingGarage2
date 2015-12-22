@@ -68,4 +68,6 @@ public class MinimumNoMaximumRate implements FeeStrategy{
     public double getTotalCost(double time){
         return ((time*hourlyRate)+minCharge);
     }
+    
+    
 }

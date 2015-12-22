@@ -7,6 +7,7 @@ package parkinggaragetwopointoh;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  *
@@ -37,4 +38,28 @@ public class TicketFactory {
     public Ticket generateTicket(String garageName,String body,int ticketNumber){
         return new Ticket(garageName,body,getTicketEntryTime(),ticketNumber);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.timeFormat);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TicketFactory other = (TicketFactory) obj;
+        if (!Objects.equals(this.timeFormat, other.timeFormat)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

@@ -106,9 +106,6 @@ public class TicketInputTerminal {
     }
     
     public void enterTicket(Ticket t){
-        System.out.println(getTicketElapsedTime(t));
-        System.out.println(getParkingCost(getTicketElapsedTime(t)));
-        System.out.println(totalGrossed);
-        
+        getParkingCost(getTicketElapsedTime(t));
     }
 }

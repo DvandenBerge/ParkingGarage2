@@ -88,8 +88,6 @@ public class GarageOwner {
     public void retrieveSalesInfo(){
         File salesInfoTargetFile=new File("C:\\temp\\garagetotals.txt");
         fw.setInputFile(salesInfoTargetFile);
-        //Create a TextFileReader
-        fw.setFrs(new TextFileReader(new CSVFormatter()));
         fw.readFile();
     }
     

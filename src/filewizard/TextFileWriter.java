@@ -63,11 +63,13 @@ public class TextFileWriter implements FileWriterStrategy{
             Set inputKeySet=m.keySet();
             String line="";
             for(Object o:inputKeySet){
-                int day=(int)o;
                 double profit=(double)m.get(o);
-                line=day+","+profit+"\n";
-                writer.write(line);
+                int day=(int)o;
+                line=day+", "+profit;
+                writer.println(line);
+                line="";
             }
+            writer.flush();
             writer.close();
         }catch(FileNotFoundException ioe){
             System.out.println("Cannot append file");

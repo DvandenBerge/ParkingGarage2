@@ -1,6 +1,6 @@
 package parkinggaragetwopointoh;
 
-import java.text.ParseException;
+import filewizard.FileWizard;
 
 /**
  *
@@ -20,7 +20,8 @@ public class ParkingGarageTwoPointOh {
         Thread.sleep(5000);
         TicketInputTerminal ti1=new TicketInputTerminal(new MinimumNoMaximumRate(),owner1);
         ti1.enterTicket(t);
-        
+        owner1.logSalesInfo();
+        owner1.retrieveSalesInfo();
         
     }
     

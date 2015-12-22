@@ -8,6 +8,7 @@ package filewizard;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -57,19 +58,21 @@ public class TextFileWriter implements FileWriterStrategy{
     @Override
     public void writeToFile(HashMap m){
         try{
-            File outputFile=new File("C:"+File.separatorChar+"temp"+File.pathSeparatorChar+"garageTotals.txt");
+            File outputFile=new File("C:\\temp\\garagetotals.txt");
             PrintWriter writer=new PrintWriter(new BufferedWriter(new FileWriter(outputFile,true)));
             Set inputKeySet=m.keySet();
             String line="";
             for(Object o:inputKeySet){
                 int day=(int)o;
                 double profit=(double)m.get(o);
-                line=day+""+profit;
+                line=day+","+profit+"\n";
                 writer.write(line);
             }
             writer.close();
-        }catch(IOException ioe){
+        }catch(FileNotFoundException ioe){
             System.out.println("Cannot append file");
+        }catch(IOException ioe){
+            System.out.println("Critical Failure");
         }
     }
 }

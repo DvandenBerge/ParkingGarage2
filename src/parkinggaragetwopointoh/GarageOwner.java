@@ -4,6 +4,7 @@ import filewizard.CSVFormatter;
 import java.util.List;
 import filewizard.FileWizard;
 import filewizard.TextFileReader;
+import filewizard.TextFileWriter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,8 +25,18 @@ public class GarageOwner {
     public GarageOwner(){
         this.ticketDispensers = new ArrayList<TicketDispenser>();
         this.ticketInputTerminals = new ArrayList<TicketInputTerminal>();
+        fw.createNewFileService(new TextFileReader(new CSVFormatter()), new TextFileWriter(new CSVFormatter()), new CSVFormatter());
     }
 
+    public FileWizard getFw() {
+        return fw;
+    }
+    public void setFw(FileWizard fw) {
+        this.fw = fw;
+    }
+
+    
+    
     /**
      * Method to add terminals to the ArrayList properties of the owner
      * This method is called any time a terminal is created
@@ -94,6 +105,7 @@ public class GarageOwner {
         HashMap dailyProfits = new HashMap();
         dailyProfits.put(DAY_NUMBER,profits);
         fw.writeToFile(dailyProfits);
+        DAY_NUMBER++;
     }
 
 }

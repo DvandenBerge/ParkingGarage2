@@ -16,10 +16,10 @@ public class FileWizard {
     private File inputFile;
 
     public void createNewFileService(FileReaderStrategy frs,FileWriterStrategy fws,TextFormatter tf){
-        
+        this.frs=frs;
+        this.fws=fws;
         frs.setTextFormatter(tf);
-        frs.setTextFormatter(tf);
-        
+        fws.setTextFormatter(tf);
     }
     
     public FileReaderStrategy getFrs() {

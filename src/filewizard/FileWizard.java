@@ -1,7 +1,7 @@
 package filewizard;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -63,5 +63,9 @@ public class FileWizard {
     
     public void convertFile(){
         fws.convertFile(inputFile);
+    }
+    
+    public void writeToFile(HashMap input){
+        fws.writeToFile(input);
     }
 }

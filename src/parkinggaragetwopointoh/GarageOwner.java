@@ -6,6 +6,7 @@ import filewizard.FileWizard;
 import filewizard.TextFileReader;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -86,7 +87,13 @@ public class GarageOwner {
      * sales info
      */
     public void logSalesInfo(){
-        
+        double profits=0;
+        for(TicketInputTerminal ti:ticketInputTerminals){
+            profits+=ti.getTotalGrossed();
+        }
+        HashMap dailyProfits = new HashMap();
+        dailyProfits.put(DAY_NUMBER,profits);
+        fw.writeToFile(dailyProfits);
     }
 
 }

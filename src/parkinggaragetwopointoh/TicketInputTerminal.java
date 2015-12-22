@@ -21,9 +21,35 @@ public class TicketInputTerminal {
         go.addTicketInputTerminal(this);
     }
     
+    public FeeStrategy getRate(){
+        return this.rate;
+    }
     public void setRate(FeeStrategy fs){
         this.rate=fs;
     }
+
+    public SimpleDateFormat getTimeFormat() {
+        return timeFormat;
+    }
+    public void setTimeFormat(SimpleDateFormat timeFormat) {
+        this.timeFormat = timeFormat;
+    }
+
+    public int getTotalLoggedHours() {
+        return totalLoggedHours;
+    }
+    public void setTotalLoggedHours(int totalLoggedHours) {
+        this.totalLoggedHours = totalLoggedHours;
+    }
+
+    public double getTotalGrossed() {
+        return totalGrossed;
+    }
+    public void setTotalGrossed(double totalGrossed) {
+        this.totalGrossed = totalGrossed;
+    }
+    
+    
     
     /**
      * Method that gets the time of Ticket entry used to calculate total cost
